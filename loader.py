@@ -2,15 +2,14 @@ from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.contrib.fsm_storage.redis import RedisStorage2
 import logging
+import config_io
 import os
 
 
 logging.basicConfig(level=logging.WARNING)
-ADMIN_ID = str(os.environ.get('ADMIN_ID'))
-BOT_TOKEN = str(os.environ.get('BOT_TOKEN'))
+BOT_TOKEN = config_io.get_value("TELEGRAM_BOT_TOKEN")
 
-# storage = RedisStorage2(db=2)
-storage = MemoryStorage()
+storage = RedisStorage2(db=1)
 
 bot = Bot(token=BOT_TOKEN, parse_mode="HTML")
 dp = Dispatcher(bot, storage=storage)

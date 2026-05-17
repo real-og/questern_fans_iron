@@ -8,3 +8,7 @@ nohup.out
 config.py
 test.jpg
 test2.jpg
+readme_private.txt
+config.json
+config_dev.json
+ca.crt

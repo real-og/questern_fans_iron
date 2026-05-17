@@ -44,6 +44,7 @@ async def handle_contact(message: types.Message, state: FSMContext):
                                      first_name=name,
                                      last_name=surname,
                                      phone=number)
+    await state.update_data(user_db_id=result_db.user_id)
     
     section = await db.get_bot_section(last_selected_button)
 
@@ -64,6 +65,8 @@ async def handle_contact(message: types.Message, state: FSMContext):
 
     else:
         await message.answer(texts.no_info)
+    
+    await db.add_user_action(result_db.user_id, last_selected_button)
 
     sections = await db.get_visible_bot_sections()
     await message.answer(texts.menu, reply_markup=kb.get_bot_sections_kb(sections))

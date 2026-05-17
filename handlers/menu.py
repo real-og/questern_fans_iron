@@ -53,5 +53,6 @@ async def send_welcome(callback: types.CallbackQuery, state: FSMContext):
     sections = await db.get_visible_bot_sections()
     await callback.message.answer(texts.menu, reply_markup=kb.get_bot_sections_kb(sections))
     await State.menu.set()
+    await db.add_user_action(data.get('user_db_id'), button_id)
 
 

@@ -45,10 +45,11 @@ async def handle_contact(message: types.Message, state: FSMContext):
                                      last_name=surname,
                                      phone=number)
     await state.update_data(user_db_id=result_db.user_id)
-    
+    await message.answer(texts.register_success(int(result_db.user_id)))
     section = await db.get_bot_section(last_selected_button)
 
     file_name = side_logic.get_file_if_exists('files', section.file_name)
+
 
     if section.content_text and file_name:
         await message.answer_document(

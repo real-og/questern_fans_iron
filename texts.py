@@ -11,3 +11,12 @@ help = 'Для перезагрузки нажмите /help'
 no_info = "Информация отсутствует."
 
 menu = 'Меню'
+
+def register_success(fan_id):
+    fan_number = str(fan_id).zfill(3)
+
+    return (
+        f"Теперь вы официальный болельщик мероприятия «Беги Герой».\n"
+        f"Ваш номер болельщика: <b>{fan_number}</b>"
+    )
+    

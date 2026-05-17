@@ -8,6 +8,8 @@ from loader import dp
 from states import State
 from aiogram import types
 
+import side_logic
+
 
 @dp.message_handler(state=State.entering_name)
 async def send_welcome(message: types.Message, state: FSMContext):
@@ -45,14 +47,16 @@ async def handle_contact(message: types.Message, state: FSMContext):
     
     section = await db.get_bot_section(last_selected_button)
 
-    if section.content_text and section.file_name:
+    file_name = side_logic.get_file_if_exists('files', section.file_name)
+
+    if section.content_text and file_name:
         await message.answer_document(
-            document=types.InputFile(section.file_name),
+            document=types.InputFile(file_name),
             caption=section.content_text
         )
-    elif section.file_name:
+    elif file_name:
         await message.answer_document(
-            document=types.InputFile(section.file_name)
+            document=types.InputFile(file_name)
         )
 
     elif section.content_text:

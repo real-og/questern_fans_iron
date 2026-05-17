@@ -7,6 +7,8 @@ import texts
 from loader import dp
 from states import State
 
+import side_logic
+
 
 @dp.callback_query_handler(state=State.menu)
 async def send_welcome(callback: types.CallbackQuery, state: FSMContext):
@@ -30,15 +32,16 @@ async def send_welcome(callback: types.CallbackQuery, state: FSMContext):
         return
     
     section = await db.get_bot_section(button_id)
+    file_name = side_logic.get_file_if_exists('files', section.file_name)
 
-    if section.content_text and section.file_name:
+    if section.content_text and file_name:
         await callback.message.answer_document(
-            document=types.InputFile(section.file_name),
+            document=types.InputFile(file_name),
             caption=section.content_text
         )
-    elif section.file_name:
+    elif file_name:
         await callback.message.answer_document(
-            document=types.InputFile(section.file_name)
+            document=types.InputFile(file_name)
         )
 
     elif section.content_text:

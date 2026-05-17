@@ -6,3 +6,5 @@ class State(StatesGroup):
     entering_name = State()
     entering_surname = State()
     entering_number = State()
+
+    adding = State()

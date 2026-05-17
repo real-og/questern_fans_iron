@@ -47,19 +47,33 @@ async def handle_contact(message: types.Message, state: FSMContext):
     await state.update_data(user_db_id=result_db.user_id)
     await message.answer(texts.register_success(int(result_db.user_id)))
     section = await db.get_bot_section(last_selected_button)
+    
+    file_name = side_logic.get_file_if_exists("files", section.file_name)
+    if file_name:
+        file_path = "files/" + file_name
+        input_file = types.InputFile(file_path)
 
-    file_name = side_logic.get_file_if_exists('files', section.file_name)
+        if side_logic.is_photo_file(file_name):
+            if section.content_text:
+                await message.answer_photo(
+                    photo=input_file,
+                    caption=section.content_text
+                )
+            else:
+                await message.answer_photo(
+                    photo=input_file
+                )
 
-
-    if section.content_text and file_name:
-        await message.answer_document(
-            document=types.InputFile(file_name),
-            caption=section.content_text
-        )
-    elif file_name:
-        await message.answer_document(
-            document=types.InputFile(file_name)
-        )
+        else:
+            if section.content_text:
+                await message.answer_document(
+                    document=input_file,
+                    caption=section.content_text
+                )
+            else:
+                await message.answer_document(
+                    document=input_file
+                )
 
     elif section.content_text:
         await message.answer(section.content_text)

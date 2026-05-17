@@ -32,17 +32,33 @@ async def send_welcome(callback: types.CallbackQuery, state: FSMContext):
         return
     
     section = await db.get_bot_section(button_id)
-    file_name = side_logic.get_file_if_exists('files', section.file_name)
+    file_name = side_logic.get_file_if_exists("files", section.file_name)
 
-    if section.content_text and file_name:
-        await callback.message.answer_document(
-            document=types.InputFile(file_name),
-            caption=section.content_text
-        )
-    elif file_name:
-        await callback.message.answer_document(
-            document=types.InputFile(file_name)
-        )
+    if file_name:
+        file_path = "files/" + file_name
+        input_file = types.InputFile(file_path)
+
+        if side_logic.is_photo_file(file_name):
+            if section.content_text:
+                await callback.message.answer_photo(
+                    photo=input_file,
+                    caption=section.content_text
+                )
+            else:
+                await callback.message.answer_photo(
+                    photo=input_file
+                )
+
+        else:
+            if section.content_text:
+                await callback.message.answer_document(
+                    document=input_file,
+                    caption=section.content_text
+                )
+            else:
+                await callback.message.answer_document(
+                    document=input_file
+                )
 
     elif section.content_text:
         await callback.message.answer(section.content_text)

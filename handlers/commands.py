@@ -21,3 +21,8 @@ async def send_welcome(message: types.Message, state: FSMContext):
     await message.answer(texts.help)
 
 
+@dp.message_handler(commands=["terms"], state="*")
+async def send_welcome(message: types.Message, state: FSMContext):
+    await message.answer_document(document=types.InputFile("files/terms.jpg"), caption='Политика обработки персональных данных')
+
+

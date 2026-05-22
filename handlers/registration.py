@@ -1,5 +1,6 @@
 from aiogram import types
 from aiogram.dispatcher import FSMContext
+from aiogram.types import ReplyKeyboardRemove
 
 import keyboards as kb
 import db
@@ -45,7 +46,7 @@ async def handle_contact(message: types.Message, state: FSMContext):
                                      last_name=surname,
                                      phone=number)
     await state.update_data(user_db_id=result_db.user_id)
-    await message.answer(texts.register_success(int(result_db.user_id)))
+    await message.answer(texts.register_success(int(result_db.user_id)), reply_markup=ReplyKeyboardRemove())
     section = await db.get_bot_section(last_selected_button)
     
     file_name = side_logic.get_file_if_exists("files", section.file_name)

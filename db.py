@@ -64,7 +64,7 @@ async def init_db():
 
                         "charset": "utf8mb4",
                         "minsize": 1,
-                        "maxsize": 5,
+                        "maxsize": 1,
                         "connect_timeout": 10,
 
                         "ssl": ssl_ctx,

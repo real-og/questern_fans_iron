@@ -2,7 +2,6 @@ from loader import dp
 from aiogram import types
 from aiogram.dispatcher import FSMContext
 import texts
-import tables
 from aiogram.types import InputFile
 from states import State
 import loader

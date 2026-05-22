@@ -3,6 +3,8 @@ from aiogram.types import ReplyKeyboardRemove, \
     InlineKeyboardMarkup, InlineKeyboardButton
 
 
+
+
 def get_bot_sections_kb(sections):
     kb = InlineKeyboardMarkup(row_width=1)
 

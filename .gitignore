@@ -13,3 +13,4 @@ config.json
 config_dev.json
 ca.crt
 files
+config_prod.json

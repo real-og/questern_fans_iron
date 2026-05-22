@@ -8,6 +8,7 @@ import texts
 from loader import dp
 from states import State
 from aiogram import types
+import fan_id_interface
 
 import side_logic
 
@@ -16,14 +17,6 @@ import side_logic
 async def send_welcome(message: types.Message, state: FSMContext):
     name = message.text
     await state.update_data(name=name)
-    await message.answer(texts.enter_surname)
-    await State.entering_surname.set()
-
-
-@dp.message_handler(state=State.entering_surname)
-async def send_welcome(message: types.Message, state: FSMContext):
-    surname = message.text
-    await state.update_data(surname=surname)
     await message.answer(texts.enter_number, reply_markup=kb.get_contact_kb())
     await State.entering_number.set()
 
@@ -36,56 +29,11 @@ async def handle_contact(message: types.Message, state: FSMContext):
 
     number = message.contact.phone_number
     await state.update_data(number=number)
-    data = await state.get_data()
-    name = data.get('name')
-    surname = data.get('surname')
-    last_selected_button = data.get('last_selected_button')
 
-    result_db = await db.upsert_user(telegram_id=message.from_user.id,
-                                     first_name=name,
-                                     last_name=surname,
-                                     phone=number)
-    await state.update_data(user_db_id=result_db.user_id)
-    await message.answer(texts.register_success(int(result_db.user_id)), reply_markup=ReplyKeyboardRemove())
-    section = await db.get_bot_section(last_selected_button)
-    
-    file_name = side_logic.get_file_if_exists("files", section.file_name)
-    if file_name:
-        file_path = "files/" + file_name
-        input_file = types.InputFile(file_path)
-
-        if side_logic.is_photo_file(file_name):
-            if section.content_text:
-                await message.answer_photo(
-                    photo=input_file,
-                    caption=section.content_text
-                )
-            else:
-                await message.answer_photo(
-                    photo=input_file
-                )
-
-        else:
-            if section.content_text:
-                await message.answer_document(
-                    document=input_file,
-                    caption=section.content_text
-                )
-            else:
-                await message.answer_document(
-                    document=input_file
-                )
-
-    elif section.content_text:
-        await message.answer(section.content_text)
-
-    else:
-        await message.answer(texts.no_info)
-    
-    await db.add_user_action(result_db.user_id, last_selected_button)
-
-    sections = await db.get_visible_bot_sections()
-    await message.answer(texts.menu, reply_markup=kb.get_bot_sections_kb(sections))
+    fan_id = fan_id_interface.get_fan_id()
+    await state.update_data(fan_id=fan_id)
+    await message.answer(texts.register_success(int(fan_id)), reply_markup=ReplyKeyboardRemove())
+    await message.answer(texts.menu, reply_markup=kb.menu_kb)
     await State.menu.set()
 
 

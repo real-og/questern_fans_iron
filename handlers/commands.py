@@ -6,14 +6,16 @@ import db
 import texts
 from loader import dp
 from states import State
+from datetime import datetime
 
 
 @dp.message_handler(commands=["start"], state="*")
 async def send_welcome(message: types.Message, state: FSMContext):
-    # await state.finish()
-    sections = await db.get_visible_bot_sections()
-    await message.answer(texts.hello, reply_markup=kb.get_bot_sections_kb(sections))
+    await message.answer(texts.hello, reply_markup=kb.menu_kb)
     await State.menu.set()
+    await state.update_data(start_date=str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+    data = await state.get_data()
+    print(data)
 
 
 @dp.message_handler(commands=["help"], state="*")

@@ -8,67 +8,54 @@ from loader import dp
 from states import State
 
 import side_logic
+from aiogram.types import ReplyKeyboardRemove
+import buttons
 
 
-@dp.callback_query_handler(state=State.menu)
-async def send_welcome(callback: types.CallbackQuery, state: FSMContext):
-    button_id = callback.data
-    await state.update_data(last_selected_button=button_id)
+@dp.message_handler(state=State.menu)
+async def send_welcome(message: types.Message, state: FSMContext):
+    user_input = message.text
     data = await state.get_data()
+    user_actions = data.get('user_actions', [])
+    user_actions.append(user_input)
+    await state.update_data(user_actions=user_actions)
 
     if not data.get('name'):
-        await callback.message.answer(texts.enter_name)
+        await message.answer(texts.enter_name, reply_markup=ReplyKeyboardRemove())
         await State.entering_name.set()
         return
     
-    if not data.get('surname'):
-        callback.message.answer(texts.enter_surname)
-        await State.entering_surname.set()
-        return
-    
     if not data.get('number'):
-        await callback.message.answer(texts.enter_number, kb.get_contact_kb())
+        await message.answer(texts.enter_number, reply_markup=kb.get_contact_kb())
         await State.entering_number.set()
         return
     
-    section = await db.get_bot_section(button_id)
-    file_name = side_logic.get_file_if_exists("files", section.file_name)
 
-    if file_name:
-        file_path = "files/" + file_name
-        input_file = types.InputFile(file_path)
 
-        if side_logic.is_photo_file(file_name):
-            if section.content_text:
-                await callback.message.answer_photo(
-                    photo=input_file,
-                    caption=section.content_text
-                )
-            else:
-                await callback.message.answer_photo(
-                    photo=input_file
-                )
+    if user_input == buttons.scheadule:
+        await message.answer(texts.scheadule, disable_web_page_preview=True)
 
-        else:
-            if section.content_text:
-                await callback.message.answer_document(
-                    document=input_file,
-                    caption=section.content_text
-                )
-            else:
-                await callback.message.answer_document(
-                    document=input_file
-                )
+    elif user_input == buttons.points:
+        await message.answer_photo(photo=types.InputFile("files/points.jpg"))
+        await message.answer(texts.points, disable_web_page_preview=True)
 
-    elif section.content_text:
-        await callback.message.answer(section.content_text)
+    elif user_input == buttons.sales:
+        await message.answer(texts.sales, disable_web_page_preview=True)
 
-    else:
-        await callback.message.answer(texts.no_info)
+    elif user_input == buttons.schema:
+        await message.answer(texts.schema)
+        media = [
+            types.InputMediaPhoto(types.InputFile("files/schema1.jpg")),
+            types.InputMediaPhoto(types.InputFile("files/schema2.jpg")),
+        ]
+        await message.answer_media_group(media)
 
-    sections = await db.get_visible_bot_sections()
-    await callback.message.answer(texts.menu, reply_markup=kb.get_bot_sections_kb(sections))
-    await State.menu.set()
-    await db.add_user_action(data.get('user_db_id'), button_id)
+    elif user_input == buttons.politics:
+        await message.answer('terms')
+    
+    await message.answer(texts.menu, reply_markup=kb.menu_kb)
+
+    
+    
 
 

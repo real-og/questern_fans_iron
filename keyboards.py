@@ -5,7 +5,7 @@ from aiogram.types import ReplyKeyboardRemove, \
 import buttons
 
 
-menu_kb = ReplyKeyboardMarkup([[buttons.scheadule], [buttons.points], [buttons.sales], [buttons.schema], [buttons.politics]],
+menu_kb = ReplyKeyboardMarkup([[buttons.scheadule], [buttons.points], [buttons.sales], [buttons.schema]],
                                     resize_keyboard=True,
                                     one_time_keyboard=True)
 

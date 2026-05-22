@@ -14,8 +14,6 @@ async def send_welcome(message: types.Message, state: FSMContext):
     await message.answer(texts.hello, reply_markup=kb.menu_kb)
     await State.menu.set()
     await state.update_data(start_date=str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
-    data = await state.get_data()
-    print(data)
 
 
 @dp.message_handler(commands=["help"], state="*")

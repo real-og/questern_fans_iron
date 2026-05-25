@@ -1,0 +1,330 @@
+[
+  {
+    "chat_id": 353261318,
+    "user_id": 353261318,
+    "state": "State:entering_begin",
+    "data": {}
+  },
+  {
+    "chat_id": -1003955848839,
+    "user_id": 6150574145,
+    "state": "State:entering_begin",
+    "data": {}
+  },
+  {
+    "chat_id": 7645385749,
+    "user_id": 7645385749,
+    "state": "State:last_check",
+    "data": {
+      "worker": "375296546060",
+      "city": "Минск",
+      "type_work": "Монтаж",
+      "narrative": "Агентство недвижимости",
+      "type_transport": "Такси",
+      "transport_number": "6587АА",
+      "route_number": "Не знаю",
+      "photos_before": [
+        "5091297476cc41b597a080bc7ac02529.jpg"
+      ],
+      "is_completed": "Выполнено",
+      "photos_after": [
+        "d395503621a54b478d2ca53a22e00ee7.jpg"
+      ],
+      "comment": "Все прошло хорошо",
+      "working_solo": "Да"
+    }
+  },
+  {
+    "chat_id": -5166428804,
+    "user_id": 6150574145,
+    "state": "State:entering_begin",
+    "data": {}
+  },
+  {
+    "chat_id": 585332246,
+    "user_id": 585332246,
+    "state": "State:entering_begin",
+    "data": {
+      "worker_number": "375447174400",
+      "worker_name": "Павел",
+      "city": "Минск",
+      "type_work": "Демонтаж-Монтаж",
+      "narrative": "Сюжет 1",
+      "type_transport": "Маршрутка",
+      "transport_number": "1234 АА-7",
+      "route_number": "1183",
+      "photos_passport": [
+        "17b48d82a6424e42a674451ac4cef285.jpg",
+        "0141697225d74a4fbefa9485d69e27b5.jpg"
+      ],
+      "photos_before": [
+        "d107a6b4d94f4ac7b7817cbd1ab656b2.jpg",
+        "20dbfd1ac22a47258f573c3114f18a5b.jpg",
+        "674702f6e5d04df2a6f5f88d0dfc20a9.jpg",
+        "a05af6c279864c88851e54608a7f0975.jpg"
+      ],
+      "is_completed": "Выполнено",
+      "photos_after": [
+        "1eeeccf57b7d4b5e8182fb5aa1c659ae.jpg",
+        "4d6c1a8e727540ebb9827efd30ced703.jpg",
+        "a9160466dcfb4494aa88e7338c225a6c.jpg",
+        "dc62437d52114545b122b56e5016a1a3.jpg",
+        "3c268c4a6bb74dd0b455599e106b7682.jpg"
+      ],
+      "comment": "Педали надо менять",
+      "working_solo": "Нет",
+      "solo_percent": "50",
+      "teammates_percent": [
+        50
+      ],
+      "teammates": [
+        "Никита 375296065665"
+      ]
+    }
+  },
+  {
+    "chat_id": 6167283093,
+    "user_id": 6167283093,
+    "state": "State:menu",
+    "data": {
+      "last_selected_button": "2",
+      "name": "wefwef",
+      "surname": "wefwqef",
+      "number": "542254411767",
+      "user_db_id": 1
+    }
+  },
+  {
+    "chat_id": 7761483107,
+    "user_id": 7761483107,
+    "state": "State:last_check",
+    "data": {
+      "worker": "375296546969",
+      "city": "Минск",
+      "type_work": "Монтаж",
+      "narrative": "Белшина",
+      "type_transport": "Маршрутка",
+      "transport_number": "АВ7195-6",
+      "route_number": "40",
+      "photos_before": [
+        "156b9c622d8a4ba59201b952893a2e09.jpg"
+      ],
+      "is_completed": "Выполнено",
+      "photos_after": [
+        "b44d0200349f4fbdba5c4685bd535224.jpg"
+      ],
+      "comment": "Отлично",
+      "working_solo": "Да"
+    }
+  },
+  {
+    "chat_id": 7063959200,
+    "user_id": 7063959200,
+    "state": "State:entering_your_number",
+    "data": {}
+  },
+  {
+    "chat_id": 8507704829,
+    "user_id": 8507704829,
+    "state": "State:entering_photos_passport",
+    "data": {
+      "worker_number": "375447174411",
+      "worker_name": "Vudu",
+      "city": "Витебск",
+      "type_work": "Монтаж-Демонтаж",
+      "narrative": "Сюжет 1",
+      "type_transport": "Такси",
+      "transport_number": "Е123",
+      "route_number": "666",
+      "photos_passport": [
+        "c866905a31a8432c988069741bef3140.jpg",
+        "7a42a1038b1645f8ac2d2a4453819ad6.jpg",
+        "2bd98c1729da44abbe17925d37f8bafc.jpg",
+        "2d9923d4dce54b6f8100b1e1b7cfbb6c.jpg",
+        "548ccf08e54340d68d92172c390a93bc.jpg"
+      ],
+      "photos_before": [
+        "62540dea9e39414a9bedb4ad7a59439c.jpg",
+        "c15c038654a74d7cb2a6810e548e04a5.jpg",
+        "02b970917a1f4084b959ea54930779e3.jpg",
+        "51e842139dc34efea121ac4c219f7b55.jpg"
+      ],
+      "is_completed": "Выполнено",
+      "photos_after": [
+        "adef12b2754943bfab3a653d23d41188.jpg",
+        "3b6e5f22b96f46a2a2d41c12875e549f.jpg",
+        "1288390524eb46b59ede4a1c537b31fb.jpg",
+        "33c9171d07c64c18aa759fc37051eb82.jpg"
+      ],
+      "comment": "У маршруток нету номеров в виде Е123АВ-7.",
+      "working_solo": "Нет",
+      "solo_percent": "0",
+      "teammates_percent": [
+        100
+      ],
+      "teammates": [
+        "Никита 375296065665"
+      ]
+    }
+  },
+  {
+    "chat_id": 6150574145,
+    "user_id": 6150574145,
+    "state": "State:menu",
+    "data": {
+      "worker_number": "375336976948",
+      "worker_name": "Евгений",
+      "start_date": "2026-05-22 22:43:15",
+      "city": "Брест",
+      "type_work": "Монтаж",
+      "narrative": "Сюжет 9",
+      "type_transport": "Такси",
+      "transport_number": "AB5785-7",
+      "representative": "Нет информации",
+      "photos_before": [
+        "fd29a22171044f6fb76d1ba3cda6966f.jpg",
+        "02ae45d48b6748aaa96b95b92004f0f7.jpg",
+        "73115aa83e8344a3bd8b5076e4491b20.jpg",
+        "3f4c8c4e17b84e88aad6779043155a6f.jpg",
+        "fd17d3b57d414befa913c0e21c37d01f.jpg",
+        "9c17fcedaace4d90a2da9f5857d5a116.jpg"
+      ],
+      "photos_before_doc": [
+        "BQACAgIAAxkBAAIJ8WoMGQZfPMc7XBeXf7sbxz9VW730AAIgowACesAwSBctdGU_aosQOwQ",
+        "BQACAgIAAxkBAAIKq2oNE2fHUoel-wv5DsOqwDQEfpEQAAJZpQACA4UxSF7tfocSeTb8OwQ",
+        "BQACAgIAAxkBAAIJ72oMGQZ3GGQ_vzRcsymIhvKav_ScAAIdowACesAwSBAQFlHMghyzOwQ",
+        "BQACAgIAAxkBAAIKrWoNE2dlzJx-IfZBx9_f_xrTAAF9lAACWqUAAgOFMUgdoCQ7smF1nTsE",
+        "BQACAgIAAxkBAAIJ7WoMGQaRW13tc8RsuuyubWMtGCNiAAIbowACesAwSCp19KDTmpssOwQ",
+        "BQACAgIAAxkBAAIKr2oNE2dORZ5tavCmn9PNcQHWd1NMAAJbpQACA4UxSHR-HeEbXIHLOwQ"
+      ],
+      "photos_before_pic": [],
+      "is_completed": "Выполнено",
+      "photos_after": [
+        "88871a93c4d94e9697bb3e4bd2778ac3.jpg",
+        "1a9b71384e8d4b07a0cfdb15f443a8bd.jpg",
+        "d00657bcf79045d19112ca3ba78061ea.jpg",
+        "9ac4df81de5e4e73ad2ad3205bb082ce.jpg",
+        "3c0c5cf5b2f342fab1982be909e8c9e3.jpg"
+      ],
+      "photos_after_doc": [],
+      "photos_after_pic": [
+        "AgACAgIAAxkBAAIKZGoNEX1LTLZ0Qg3ajkpZNS3JtVZaAAJbGGsbegloSDW0h9sIUCX_AQADAgADdwADOwQ",
+        "AgACAgIAAxkBAAILWGoPpQwwAAHjfjKxM1wKcOJkMGJ81gAC6BprG3JbgEhe2WjVHFTgGQEAAwIAA3cAAzsE",
+        "AgACAgIAAxkBAAIKZmoNEX2bLQJNQ7Pg72xpxHuK5GQfAAJcGGsbegloSHy91XEZIeqRAQADAgADdwADOwQ",
+        "AgACAgIAAxkBAAIKZ2oNEX1g82ap42KcvJhEKal2c6T0AAJdGGsbegloSL56o4l_4-u6AQADAgADdwADOwQ",
+        "AgACAgIAAxkBAAIKaWoNEX1n-_R6AuMIDZ4gCSmUB7OHAAJfGGsbegloSNb3AtR6U5rZAQADAgADeQADOwQ"
+      ],
+      "end_date": "2026-05-22 05:47:08",
+      "comment": "Без комментария",
+      "working_solo": "Да, только на меня",
+      "user_actions": [
+        "fgdf",
+        "Расписание мероприятия",
+        "авп",
+        "Расписание мероприятия",
+        "Точки поддержки",
+        "Расписание мероприятия",
+        "Точки поддержки",
+        "Скидки болельщикам",
+        "Схема перекрытий и парковок",
+        "Согласие на обработку персональных данных"
+      ],
+      "name": "Иван Петров",
+      "number": "375336976948",
+      "fan_id": 1
+    }
+  },
+  {
+    "chat_id": 5056100669,
+    "user_id": 5056100669,
+    "state": "State:last_check",
+    "data": {
+      "worker": "375296065664",
+      "city": "Минск",
+      "type_work": "Монтаж",
+      "narrative": "Автосеть",
+      "type_transport": "Такси",
+      "transport_number": "2315",
+      "route_number": "1002",
+      "photos_before": [
+        "044199e5c7a64598a4cda683c67e87a8.jpg"
+      ],
+      "is_completed": "Выполнено",
+      "photos_after": [
+        "2d1dab7ec3b5431aad7bb8dc9d3a13c5.jpg"
+      ],
+      "comment": "Без комментария",
+      "working_solo": "Да"
+    }
+  },
+  {
+    "chat_id": 6643344811,
+    "user_id": 6643344811,
+    "state": "State:last_check",
+    "data": {
+      "worker_number": "375293422859",
+      "worker_name": "Константин",
+      "city": "Могилев",
+      "type_work": "Монтаж-Демонтаж",
+      "narrative": "Сюжет 10",
+      "type_transport": "A1",
+      "transport_number": "В формате",
+      "photos_passport": [
+        "31ce91dbc56d41d2b6cd6f8399decf38.jpg",
+        "426fef017eca48ff80d6acea2bd7b049.jpg"
+      ],
+      "photos_before": [
+        "145a78243f7b43aca4c138f3adc161fb.jpg",
+        "486bc5d6f6e748a1b050fa3c183b806c.jpg",
+        "96b946552f5a4edcab938c98d4a6091b.jpg",
+        "9c5e3dee1d104be796fa952586294d66.jpg"
+      ],
+      "is_completed": "Не выполнено",
+      "photos_after": [
+        "b635e08252304aceac76a5264710e27d.jpg",
+        "e32e496fd8b7424a830c0a36f064a507.jpg",
+        "e32316c17e9f4d67b6495f49b4330e73.jpg",
+        "826b7a143de744a69221fe78395b3e0d.jpg"
+      ],
+      "comment": "Без комментария",
+      "working_solo": "Нет",
+      "solo_percent": "2",
+      "teammates_percent": [
+        98
+      ],
+      "teammates": [
+        "Константин 375293422859"
+      ]
+    }
+  },
+  {
+    "chat_id": 7168832293,
+    "user_id": 7168832293,
+    "state": "State:last_check",
+    "data": {
+      "worker": "375336629990",
+      "city": "375296546363",
+      "type_work": "Витебск",
+      "narrative": "Монтаж",
+      "type_transport": "Такси",
+      "transport_number": "3255",
+      "route_number": "12",
+      "photos_before": [
+        "100c84fc0d3745b6b5c8d6550bf6ec63.jpg"
+      ],
+      "is_completed": "Выполнено",
+      "photos_after": [
+        "b8752f438ab34fe2b93dcf05a3476c7f.jpg"
+      ],
+      "comment": "10/10",
+      "working_solo": "Нет",
+      "solo_percent": "50",
+      "teammates": [
+        "375296546363"
+      ],
+      "teammates_percent": [
+        "50"
+      ]
+    }
+  }
+]

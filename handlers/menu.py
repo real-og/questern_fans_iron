@@ -43,7 +43,7 @@ async def send_welcome(message: types.Message, state: FSMContext):
         await message.answer(texts.guide_4)
 
     elif user_input == buttons.sales:
-        file_id = 'BQACAgEAAxkDAAIB02oYiH2jBoJrrIbqnGtUOKNaLqAqAAJSBwACELHBRGtQIO0gwfvQOwQ'
+        file_id = 'BQACAgIAAxkDAAIGYmoYijmUH4truAEFQCXKwgu5oXwZAAIclgACOvrISFY93wW5MNR7OwQ'
         await message.answer_document(document=file_id, caption=texts.sales)
         # m = await message.answer_document(document=types.InputFile("files/sales_voronezh.pdf"), caption=texts.sales)
         # print(m)

@@ -55,9 +55,9 @@ async def handle_contact(message: types.Message, state: FSMContext):
             await message.answer(texts.guide_4)
 
         elif user_input == buttons.sales:
-            file_id = 'BQACAgIAAxkDAAIGYmoYijmUH4truAEFQCXKwgu5oXwZAAIclgACOvrISFY93wW5MNR7OwQ'
+            file_id = 'BQACAgIAAxkDAAIHkWoYsvOYpl5O6jP5cT-japTctJdmAAKmmAACOvrISFint87fBP_jOwQ'
             await message.answer_document(document=file_id, caption=texts.sales)
-            # m = await message.answer_document(document=types.InputFile("files/sales_voronezh.pdf"), caption=texts.sales)
+            # m = await message.answer_document(document=types.InputFile("files/Скидки_для_участников_и_болельщиков_|_Воронеж.pdf"), caption=texts.sales)
             # print(m)
 
         elif user_input == buttons.maps:
@@ -80,6 +80,7 @@ async def handle_contact(message: types.Message, state: FSMContext):
             media = [
                 types.InputMediaPhoto(types.InputFile("files/voronez_perecrit_1.jpg")),
                 types.InputMediaPhoto(types.InputFile("files/voronez_perecrit_2.jpg")),
+                types.InputMediaPhoto(types.InputFile("files/voronez_perecrit_3.jpg")),
             ]
             await message.answer_media_group(media)
         

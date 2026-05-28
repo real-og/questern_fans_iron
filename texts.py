@@ -13,7 +13,7 @@ help = 'Для перезагрузки нажмите /start'
 
 no_info = "Информация отсутствует."
 
-menu = 'Другие разделы доступны в меню ниже👇🏼'
+menu = 'Другие разделы в меню справа  ↘️'
 
 def register_success(fan_id):
     fan_number = str(fan_id).zfill(3)

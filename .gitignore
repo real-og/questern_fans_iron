@@ -13,3 +13,4 @@ config.json
 config_dev.json
 ca.crt
 config_prod.json
+bot_users.json

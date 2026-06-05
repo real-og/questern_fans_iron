@@ -9,6 +9,7 @@ redis_client = redis.Redis(
 )
 
 FAN_ID_KEY = "next_fan_id"
+FAN_NUMBER_KEY = "next_fan_number"
 
 
 def get_fan_id() -> int:
@@ -20,3 +21,7 @@ def get_fan_id() -> int:
     new_id = redis_client.incr(FAN_ID_KEY)
 
     return new_id
+
+def get_fan_number() -> int:
+    new_number = redis_client.incr(FAN_NUMBER_KEY)
+    return new_number

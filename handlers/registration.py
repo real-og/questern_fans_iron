@@ -119,6 +119,7 @@ async def send_welcome(message: types.Message, state: FSMContext):
             await message.answer_photo(photo=types.InputFile("files/parks.jpg"))
 
         elif user_input == buttons.my_number:
+            data = await state.get_data()
             fan_id = data.get('fan_id')
             fan_number = data.get('fan_number')
             await message.answer(texts.get_my_numbers(fan_id, fan_number))

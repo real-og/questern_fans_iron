@@ -7,6 +7,7 @@ class State(StatesGroup):
     entering_email = State()
     entering_number = State()
 
+    confirmation = State()
 
     adding = State()
     

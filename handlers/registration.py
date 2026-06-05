@@ -42,7 +42,7 @@ async def send_welcome(message: types.Message, state: FSMContext):
     await state.update_data(email=email)
 
     fan_id = fan_id_interface.get_fan_id()
-    await state.update_data(fan_id=fan_id)
+    await state.update_data(fan_number=fan_id)
 
     await message.answer(texts.register_success(int(fan_id)), reply_markup=ReplyKeyboardRemove())
 
@@ -54,11 +54,11 @@ async def send_welcome(message: types.Message, state: FSMContext):
         user_input = last_action
 
         data = await state.get_data()
-        fan_number = data.get('fan_number')
+        event_number = data.get('event_number')
 
-        if not fan_number:
-            fan_number = fan_id_interface.get_fan_number()
-            await state.update_data(fan_number=fan_number)
+        if not event_number:
+            event_number = fan_id_interface.get_event_number()
+            await state.update_data(event_number=event_number)
             await state.update_data(minsk_reg=str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
 
         user_actions = data.get('user_actions_minsk', [])
@@ -120,9 +120,9 @@ async def send_welcome(message: types.Message, state: FSMContext):
 
         elif user_input == buttons.my_number:
             data = await state.get_data()
-            fan_id = data.get('fan_id')
             fan_number = data.get('fan_number')
-            await message.answer(texts.get_my_numbers(fan_id, fan_number))
+            event_number = data.get('event_number')
+            await message.answer(texts.get_my_numbers(fan_number, event_number))
         
     await message.answer(texts.menu, reply_markup=kb.menu_kb)
     await State.menu.set()

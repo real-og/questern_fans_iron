@@ -13,15 +13,12 @@ FAN_NUMBER_KEY = "next_fan_number"
 
 
 def get_fan_id() -> int:
-    """
-    Возвращает новый уникальный номер болельщика.
-    Номера идут по порядку и сохраняются после перезапуска бота.
-    """
+
 
     new_id = redis_client.incr(FAN_ID_KEY)
 
     return new_id
 
-def get_fan_number() -> int:
+def get_event_number() -> int:
     new_number = redis_client.incr(FAN_NUMBER_KEY)
     return new_number

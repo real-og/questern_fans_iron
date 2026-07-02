@@ -64,7 +64,7 @@ async def handle_contact(message: types.Message, state: FSMContext):
 
     data = await state.get_data()
     if data.get('email'):
-        'Спасибо! Данные сохранены!'
+        await message.answer('Спасибо! Данные сохранены!', reply_markup=kb.menu_kb)
 
     else:
         await message.answer(texts.enter_email, reply_markup=ReplyKeyboardRemove())

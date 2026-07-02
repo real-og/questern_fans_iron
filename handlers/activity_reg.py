@@ -13,7 +13,7 @@ import buttons
 import fan_id_interface
 from datetime import datetime
 
-@dp.callback_query_handler()
+@dp.callback_query_handler(state=State.menu)
 async def inline_button_handler(callback: types.CallbackQuery, state: FSMContext):
     if callback.data == '1':
         activity_name = 'Городской интерактивный квест IRONSTAR'

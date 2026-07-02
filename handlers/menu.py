@@ -81,11 +81,11 @@ async def send_welcome(message: types.Message, state: FSMContext):
 
     elif user_input == buttons.activity:
         await message.answer(texts.activity_0)
-        await message.answer(texts.activity_1, reply_markup=kb.reg_kb)
-        await message.answer(texts.activity_2, reply_markup=kb.reg_kb)
-        await message.answer(texts.activity_3, reply_markup=kb.reg_kb)
-        await message.answer(texts.activity_4, reply_markup=kb.reg_kb)
-        await message.answer(texts.activity_5, reply_markup=kb.reg_kb)
+        await message.answer(texts.activity_1, reply_markup=kb.reg_kb_1)
+        await message.answer(texts.activity_2, reply_markup=kb.reg_kb_2)
+        await message.answer(texts.activity_3, reply_markup=kb.reg_kb_3)
+        await message.answer(texts.activity_4, reply_markup=kb.reg_kb_4)
+        await message.answer(texts.activity_5, reply_markup=kb.reg_kb_5)
 
     elif user_input == buttons.infocatalog:
         await message.answer(texts.infocatalog, disable_web_page_preview=True)

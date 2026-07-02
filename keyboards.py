@@ -17,7 +17,7 @@ menu_kb = ReplyKeyboardMarkup(
 )
 
 
-reg_kb_1 = InlineKeyboardMarkup()
+
 b_1 = InlineKeyboardButton('РЕГИСТРАЦИЯ', callback_data='1')
 b_2 = InlineKeyboardButton('РЕГИСТРАЦИЯ', callback_data='2')
 b_3 = InlineKeyboardButton('РЕГИСТРАЦИЯ', callback_data='3')

@@ -24,11 +24,18 @@ def register_success(fan_id):
         
 <i>Ваш номер болельщика: <b>{fan_number}</b></i>"""
 
-def get_my_numbers(fan_id, fan_number):
+def get_my_numbers(fan_id, fan_number, registers):
     fan_id = str(fan_id).zfill(3)
     fan_number = str(fan_number).zfill(3)
-    return f"""<b>Ваш ID:</b> {fan_id}
+
+    text = f"""<b>Ваш ID:</b> {fan_id}
 <b>Ваш номер болельщика:</b> {fan_number}"""
+
+    if registers:
+        text += "\n\n<b>Ваши регистрации:</b>"
+        text += "\n" + "\n".join(registers)
+
+    return text
 
 
 

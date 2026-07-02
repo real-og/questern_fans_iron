@@ -17,6 +17,24 @@ menu_kb = ReplyKeyboardMarkup(
 )
 
 
+reg_kb_1 = InlineKeyboardMarkup()
+b_1 = InlineKeyboardButton('РЕГИСТРАЦИЯ', callback_data='1')
+b_2 = InlineKeyboardButton('РЕГИСТРАЦИЯ', callback_data='2')
+b_3 = InlineKeyboardButton('РЕГИСТРАЦИЯ', callback_data='3')
+b_4 = InlineKeyboardButton('РЕГИСТРАЦИЯ', callback_data='4')
+b_5 = InlineKeyboardButton('РЕГИСТРАЦИЯ', callback_data='5')
+reg_kb_1 = InlineKeyboardMarkup()
+reg_kb_1.add(b_1)
+reg_kb_2 = InlineKeyboardMarkup()
+reg_kb_2.add(b_2)
+reg_kb_3 = InlineKeyboardMarkup()
+reg_kb_3.add(b_3)
+reg_kb_4 = InlineKeyboardMarkup()
+reg_kb_4.add(b_4)
+reg_kb_5 = InlineKeyboardMarkup()
+reg_kb_5.add(b_5)
+
+
 
 def get_contact_kb():
     kb = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)

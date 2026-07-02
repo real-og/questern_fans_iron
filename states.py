@@ -6,6 +6,8 @@ class State(StatesGroup):
     entering_name = State()
     entering_email = State()
     entering_number = State()
+    entering_birth = State()
+    entering_city = State()
 
     confirmation = State()
 

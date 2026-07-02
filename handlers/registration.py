@@ -15,6 +15,13 @@ import buttons
 
 import side_logic
 
+def is_valid_date(date_str: str) -> bool:
+    try:
+        datetime.strptime(date_str, "%d.%m.%Y")
+        return True
+    except ValueError:
+        return False
+
 
 @dp.message_handler(state=State.entering_name)
 async def send_welcome(message: types.Message, state: FSMContext):
@@ -32,8 +39,36 @@ async def handle_contact(message: types.Message, state: FSMContext):
 
     number = message.contact.phone_number
     await state.update_data(number=number)
-    await message.answer(texts.enter_email, reply_markup=ReplyKeyboardRemove())
-    await State.entering_email.set()
+    text = "Напишите дату рождения в формате ДД.ММ.ГГГГ"
+    await message.answer(text, reply_markup=ReplyKeyboardRemove())
+    await State.entering_birth.set()
+
+
+@dp.message_handler(state=State.entering_birth)
+async def handle_contact(message: types.Message, state: FSMContext):
+    date = message.text
+    if is_valid_date(date):
+        await state.update_data(birth=date)
+        text = 'Напишите в каком городе вы живете?'
+        await message.answer(text, reply_markup=ReplyKeyboardRemove())
+        await State.entering_city.set()
+        
+    else:
+        text = "Не удалось распознать дату. Напишите ее в формате ДД.ММ.ГГГГ"
+        await message.answer(text, reply_markup=ReplyKeyboardRemove())
+
+
+@dp.message_handler(state=State.entering_city)
+async def handle_contact(message: types.Message, state: FSMContext):
+    await state.update_data(number=message.text)
+
+    data = await state.get_data()
+    if data.get('email'):
+        'Спасибо! Данные сохранены!'
+
+    else:
+        await message.answer(texts.enter_email, reply_markup=ReplyKeyboardRemove())
+        await State.entering_email.set()
 
 
 @dp.message_handler(state=State.entering_email)

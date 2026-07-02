@@ -21,11 +21,11 @@ async def send_welcome(message: types.Message, state: FSMContext):
     if not event_number:
         event_number = fan_id_interface.get_event_number()
         await state.update_data(event_number=event_number)
-        await state.update_data(minsk_reg=str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+        await state.update_data(tumen_reg=str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
 
-    user_actions = data.get('user_actions_minsk', [])
+    user_actions = data.get('user_actions_tumen', [])
     user_actions.append(user_input)
-    await state.update_data(user_actions_minsk=user_actions)
+    await state.update_data(user_actions_tumen=user_actions)
 
     if not data.get('name'):
         await message.answer(texts.enter_name, reply_markup=ReplyKeyboardRemove())
@@ -45,40 +45,53 @@ async def send_welcome(message: types.Message, state: FSMContext):
 
     elif user_input == buttons.guide:
         await message.answer(texts.guide_1, disable_web_page_preview=True)
-        await message.answer(texts.guide_2, disable_web_page_preview=True)
+        media = [
+            types.InputMediaPhoto(types.InputFile("files/guide_1.jpg"), caption=texts.guide_2),
+            types.InputMediaPhoto(types.InputFile("files/guide_2.jpg")),
+            types.InputMediaPhoto(types.InputFile("files/guide_3.jpg")),
+            types.InputMediaPhoto(types.InputFile("files/guide_4.jpg")),
+            types.InputMediaPhoto(types.InputFile("files/guide_5.jpg")),
+            types.InputMediaPhoto(types.InputFile("files/guide_6.jpg")),
+        ]
+        await message.answer_media_group(media)
         await message.answer(texts.guide_3, disable_web_page_preview=True)
         await message.answer(texts.guide_4, disable_web_page_preview=True)
-        await message.answer(texts.guide_5, disable_web_page_preview=True)
+
+
 
     elif user_input == buttons.sales:
         # file_id = 'BQACAgIAAxkDAAIHkWoYsvOYpl5O6jP5cT-japTctJdmAAKmmAACOvrISFint87fBP_jOwQ'
         # await message.answer_document(document=file_id, caption=texts.sales)
-        m = await message.answer_document(document=types.InputFile("files/Скидки_IRONSTAR_Минск.pdf"), caption=texts.sales)
+        m = await message.answer_document(document=types.InputFile("files/Скидки_для_участников_и_болельщиков.pdf"), caption=texts.sales)
         print(m)
 
     elif user_input == buttons.maps:
-        media = [
-            types.InputMediaPhoto(types.InputFile("files/map_minsk_1.jpg"), caption='SWIMSTAR'),
-            types.InputMediaPhoto(types.InputFile("files/map_minsk_2.jpg")),
-        ]
-        await message.answer_media_group(media)
-        await message.answer_photo(photo=types.InputFile("files/map_minsk_3.jpg"), caption='IRONLADY')
-        await message.answer_photo(photo=types.InputFile("files/map_minsk_4.jpg"), caption='MANSTAR')
-        await message.answer_photo(photo=types.InputFile("files/map_minsk_5.jpg"), caption='IRONSTAR 113')
-        await message.answer_photo(photo=types.InputFile("files/map_minsk_6.jpg"), caption='IRONSTAR ОЛИМПИК')
-        await message.answer_photo(photo=types.InputFile("files/map_minsk_7.jpg"), caption='ЭКСПО')
-        await message.answer_photo(photo=types.InputFile("files/map_minsk_8.jpg"), caption='STARKIDS')
+        # media = [
+        #     types.InputMediaPhoto(types.InputFile("files/map_minsk_1.jpg"), caption='SWIMSTAR'),
+        #     types.InputMediaPhoto(types.InputFile("files/map_minsk_2.jpg")),
+        # ]
+        # await message.answer_media_group(media)
+        await message.answer_photo(photo=types.InputFile("files/map_tumen_1.jpg"), caption='IRONSTAR 113')
+        await message.answer_photo(photo=types.InputFile("files/map_tumen_2.jpg"), caption='IRONSTAR ОЛИМПИК')
+        await message.answer_photo(photo=types.InputFile("files/map_tumen_3.jpg"), caption='IRONLADY')
+        await message.answer_photo(photo=types.InputFile("files/map_tumen_4.jpg"), caption='MANSTAR')
+        await message.answer_photo(photo=types.InputFile("files/map_tumen_5.jpg"), caption='STARKIDS')
+        await message.answer_photo(photo=types.InputFile("files/map_tumen_6.jpg"), caption='ЭКСПО')
 
 
     elif user_input == buttons.activity:
-        await message.answer(texts.activity)
+        await message.answer(texts.activity_0)
+        await message.answer(texts.activity_1)
+        await message.answer(texts.activity_2)
+        await message.answer(texts.activity_3)
+        await message.answer(texts.activity_4)
+        await message.answer(texts.activity_5)
 
     elif user_input == buttons.infocatalog:
         await message.answer(texts.infocatalog, disable_web_page_preview=True)
 
     elif user_input == buttons.schema:
-        await message.answer(texts.schema)
-        await message.answer_photo(photo=types.InputFile("files/parks.jpg"))
+        await message.answer_photo(photo=types.InputFile("files/schema_tumen.jpg"), caption=texts.schema)
 
     elif user_input == buttons.my_number:
         data = await state.get_data()

@@ -10,10 +10,15 @@ from states import State
 from aiogram import types
 import fan_id_interface
 from datetime import datetime
+import re
 
 import buttons
 
 import side_logic
+
+def is_email(string):
+        pattern = r'^[\w\.-]+@[\w\.-]+\.\w{2,}$'
+        return re.match(pattern, string) is not None
 
 def is_valid_date(date_str: str) -> bool:
     try:
@@ -75,6 +80,11 @@ async def handle_contact(message: types.Message, state: FSMContext):
 @dp.message_handler(state=State.entering_email)
 async def send_welcome(message: types.Message, state: FSMContext):
     email = message.text
+    
+    if not is_email(email):
+        await message.answer('Неверный формат email, введите еще раз')
+        return
+
     await state.update_data(email=email)
 
     fan_id = fan_id_interface.get_fan_id()

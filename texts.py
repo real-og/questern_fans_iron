@@ -20,7 +20,7 @@ def register_success(fan_id):
     fan_number = str(fan_id).zfill(3)
 
     return f"""Готово! ✔️ 
-Теперь вся информация о мероприятии доступна в меню.
+Теперь вся информация о мероприятии доступна в меню справа ↘️
         
 <i>Ваш номер болельщика: <b>{fan_number}</b></i>"""
 
@@ -28,8 +28,8 @@ def get_my_numbers(fan_id, fan_number, registers):
     fan_id = str(fan_id).zfill(3)
     fan_number = str(fan_number).zfill(3)
 
-    text = f"""<b>Ваш ID:</b> {fan_id}
-<b>Ваш номер болельщика:</b> {fan_number}"""
+    text = f"""<b>Ваш ID:</b> {fan_number}
+<b>Ваш номер болельщика:</b> {fan_id}"""
 
     if registers:
         text += "\n\n<b>Ваши регистрации:</b>"
@@ -193,6 +193,9 @@ activity_0 = """<b>На IRONSTAR Тюмень 2026</b> можно не толь�
 🔗Сохраняйте программу и до встречи на IRONSTAR Тюмень!"""
 
 activity_1 = """<b>⚡️Городской интерактивный квест IRONSTAR</b>
+
+<i>Заходите, чтобы не потерять -></i>@triathlonquestbot
+
 • 12:00 — старт в зоне ЭКСПО
 • Участие бесплатное и доступно в любой день с 3 по 5 июля
 • Интеллектуальные, поисковые и фото-задания

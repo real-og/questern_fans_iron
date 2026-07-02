@@ -60,7 +60,7 @@ async def handle_contact(message: types.Message, state: FSMContext):
 
 @dp.message_handler(state=State.entering_city)
 async def handle_contact(message: types.Message, state: FSMContext):
-    await state.update_data(number=message.text)
+    await state.update_data(city=message.text)
 
     data = await state.get_data()
     if data.get('email'):

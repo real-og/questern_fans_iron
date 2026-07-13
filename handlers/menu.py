@@ -78,7 +78,7 @@ async def send_welcome(message: types.Message, state: FSMContext):
         # await message.answer_photo(photo=types.InputFile("files/map_tumen_5.jpg"), caption='STARKIDS')
         # await message.answer_photo(photo=types.InputFile("files/map_tumen_6.jpg"), caption='ЭКСПО')
     elif user_input == buttons.docs:
-         m = await message.answer_document(document=types.InputFile("files/Согласие_с_условиями_участия_в_Ночном_забеге_в_столице_закатов_2026.docx"), caption=texts.docs, reply_markup=kb.menu_kb)
+         m = await message.answer_document(document=types.InputFile("files/Согласие_с_условиями_участия_в_Ночном_забеге.docx"), caption=texts.docs, reply_markup=kb.menu_kb)
 
 
     # elif user_input == buttons.activity:

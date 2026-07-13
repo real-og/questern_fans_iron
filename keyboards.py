@@ -7,10 +7,10 @@ import buttons
 
 menu_kb = ReplyKeyboardMarkup(
     [
-        [buttons.scheadule, buttons.guide],
-        [buttons.sales, buttons.maps],
-        [buttons.schema, buttons.infocatalog],
-        [buttons.activity, buttons.my_number]
+        [buttons.scheadule],
+        [buttons.maps],
+        [buttons.docs],
+        [buttons.my_number]
     ],
     resize_keyboard=True,
     one_time_keyboard=True

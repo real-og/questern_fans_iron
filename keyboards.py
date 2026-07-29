@@ -10,6 +10,7 @@ menu_kb = ReplyKeyboardMarkup(
         [buttons.scheadule],
         [buttons.maps],
         [buttons.docs],
+        [buttons.sales],
         [buttons.my_number]
     ],
     resize_keyboard=True,

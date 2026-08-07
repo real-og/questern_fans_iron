@@ -83,6 +83,7 @@ async def send_welcome(message: types.Message, state: FSMContext):
         await message.answer_photo(photo=types.InputFile("files/msk8.jpg"), caption='ДЕТСКИЙ КУБОК ФТР 13-14 ЛЕТ')
         await message.answer_photo(photo=types.InputFile("files/msk9.jpg"), caption='СЕМЕЙНАЯ ЭСТАФЕТА')
         await message.answer_photo(photo=types.InputFile("files/msk10.jpg"), caption='СУПЕРСПРИНТ ТРОЙКА (ОТБОРОЧНЫЙ ТУР)')
+        await message.answer_photo(photo=types.InputFile("files/msk11.jpg"), caption='СУПЕРСПРИНТ ТРОЙКА (ФИНАЛ)')
     # elif user_input == buttons.docs:
     #      m = await message.answer_document(document=types.InputFile("files/Согласие_с_условиями_участия_в_Ночном_забеге.docx"), caption=texts.docs, reply_markup=kb.menu_kb)
 

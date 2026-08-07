@@ -64,7 +64,7 @@ async def send_welcome(message: types.Message, state: FSMContext):
         # await message.answer(texts.sales, disable_web_page_preview=True)
         # file_id = 'BQACAgIAAxkDAAIWhmpF7YG9N_X6WW7pmz9Lj2jNYInXAAKDpwACHCYoSoxDzrTbhrBCPAQ'
         # await message.answer_document(document=file_id, caption=texts.sales)
-        m = await message.answer_document(document=types.InputFile("files/Предложения_участникам_и_болельщикам.pdf"), caption=texts.sales, disable_web_page_preview=True)
+        m = await message.answer_document(document=types.InputFile("files/Предложения_участникам_и_болельщикам.pdf"), caption=texts.sales)
         print(m)
 
     elif user_input == buttons.maps:

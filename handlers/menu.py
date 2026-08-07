@@ -62,10 +62,10 @@ async def send_welcome(message: types.Message, state: FSMContext):
 
     elif user_input == buttons.sales:
         # await message.answer(texts.sales, disable_web_page_preview=True)
-        # file_id = 'BQACAgIAAxkDAAIWhmpF7YG9N_X6WW7pmz9Lj2jNYInXAAKDpwACHCYoSoxDzrTbhrBCPAQ'
-        # await message.answer_document(document=file_id, caption=texts.sales)
-        m = await message.answer_document(document=types.InputFile("files/Предложения_участникам_и_болельщикам.pdf"), caption=texts.sales)
-        print(m)
+        file_id = 'BQACAgIAAxkDAAJlVGp1dzEQp7QVaxdidgOTzh0H0JA-AALkrQAC24WpS92Lc17MJ-YWPQQ'
+        await message.answer_document(document=file_id, caption=texts.sales)
+        # m = await message.answer_document(document=types.InputFile("files/Предложения_участникам_и_болельщикам.pdf"), caption=texts.sales)
+        # print(m)
 
     elif user_input == buttons.maps:
         # media = [

@@ -17,15 +17,17 @@ from datetime import datetime
 async def send_welcome(message: types.Message, state: FSMContext):
     user_input = message.text
     data = await state.get_data()
+    if not data.get('msk_date'):
+        await state.update_data(msk_date=str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
     event_number = data.get('event_number')
     if not event_number:
         event_number = fan_id_interface.get_event_number()
         await state.update_data(event_number=event_number)
-        await state.update_data(night_reg=str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+        await state.update_data(msk_reg=str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
 
-    user_actions = data.get('user_actions_night', [])
+    user_actions = data.get('user_actions_msk', [])
     user_actions.append(user_input)
-    await state.update_data(user_actions_night=user_actions)
+    await state.update_data(user_actions_msk=user_actions)
 
     if not data.get('name'):
         await message.answer(texts.enter_name, reply_markup=ReplyKeyboardRemove())
@@ -106,7 +108,7 @@ async def send_welcome(message: types.Message, state: FSMContext):
         data = await state.get_data()
         fan_number = data.get('fan_number')
         event_number = data.get('event_number')
-        registered_activities = data.get('registered_activities_night', [])
+        registered_activities = data.get('registered_activities_msk', [])
         await message.answer(texts.get_my_numbers(fan_number, event_number, registered_activities))
 
     

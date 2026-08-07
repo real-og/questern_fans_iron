@@ -93,7 +93,9 @@ async def send_welcome(message: types.Message, state: FSMContext):
     await message.answer(texts.register_success(int(fan_id)), reply_markup=ReplyKeyboardRemove())
 
     data = await state.get_data()
-    user_actions = data.get('user_actions_night')
+    if not data.get('msk_date'):
+        await state.update_data(msk_date=str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+    user_actions = data.get('user_actions_msk')
 
     if user_actions:
         last_action = user_actions[-1]
@@ -105,11 +107,11 @@ async def send_welcome(message: types.Message, state: FSMContext):
         if not event_number:
             event_number = fan_id_interface.get_event_number()
             await state.update_data(event_number=event_number)
-            await state.update_data(night_reg=str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+            await state.update_data(msk_reg=str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
 
-        user_actions = data.get('user_actions_night', [])
+        user_actions = data.get('user_actions_msk', [])
         user_actions.append(user_input)
-        await state.update_data(user_actions_night=user_actions)
+        await state.update_data(user_actions_msk=user_actions)
 
         if not data.get('name'):
             await message.answer(texts.enter_name, reply_markup=ReplyKeyboardRemove())
@@ -123,62 +125,65 @@ async def send_welcome(message: types.Message, state: FSMContext):
         
 
         if user_input == buttons.scheadule:
-            await message.answer(texts.scheadule_1, disable_web_page_preview=True)
-        # await message.answer(texts.scheadule_2, disable_web_page_preview=True)
-        # await message.answer(texts.scheadule_3, disable_web_page_preview=True)
-
-    # elif user_input == buttons.guide:
-    #     await message.answer(texts.guide_1, disable_web_page_preview=True)
-    #     media = [
-    #         types.InputMediaPhoto(types.InputFile("files/guide_1.jpg"), caption=texts.guide_2),
-    #         types.InputMediaPhoto(types.InputFile("files/guide_2.jpg")),
-    #         types.InputMediaPhoto(types.InputFile("files/guide_3.jpg")),
-    #         types.InputMediaPhoto(types.InputFile("files/guide_4.jpg")),
-    #         types.InputMediaPhoto(types.InputFile("files/guide_5.jpg")),
-    #         types.InputMediaPhoto(types.InputFile("files/guide_6.jpg")),
-    #     ]
-    #     await message.answer_media_group(media)
-    #     await message.answer(texts.guide_3, disable_web_page_preview=True)
-    #     await message.answer(texts.guide_4, disable_web_page_preview=True)
-
-
-
+                await message.answer(texts.scheadule_1, disable_web_page_preview=True)
+                await message.answer(texts.scheadule_2, disable_web_page_preview=True)
+                await message.answer(texts.scheadule_3, disable_web_page_preview=True)
+                await message.answer(texts.scheadule_4, disable_web_page_preview=True)
+        
+        elif user_input == buttons.guide:
+            await message.answer(texts.guide_1, disable_web_page_preview=True)
+            # media = [
+            #     types.InputMediaPhoto(types.InputFile("files/guide_1.jpg"), caption=texts.guide_2),
+            #     types.InputMediaPhoto(types.InputFile("files/guide_2.jpg")),
+            #     types.InputMediaPhoto(types.InputFile("files/guide_3.jpg")),
+            #     types.InputMediaPhoto(types.InputFile("files/guide_4.jpg")),
+            #     types.InputMediaPhoto(types.InputFile("files/guide_5.jpg")),
+            #     types.InputMediaPhoto(types.InputFile("files/guide_6.jpg")),
+            # ]
+            # await message.answer_media_group(media)
+            # await message.answer(texts.guide_3, disable_web_page_preview=True)
+            # await message.answer(texts.guide_4, disable_web_page_preview=True)
+    
+    
+    
         elif user_input == buttons.sales:
-            await message.answer(texts.sales, disable_web_page_preview=True)
-        # file_id = 'BQACAgIAAxkDAAIWhmpF7YG9N_X6WW7pmz9Lj2jNYInXAAKDpwACHCYoSoxDzrTbhrBCPAQ'
-        # await message.answer_document(document=file_id, caption=texts.sales)
-        # m = await message.answer_document(document=types.InputFile("files/Скидки_для_участников_и_болельщиков.pdf"), caption=texts.sales)
-        # print(m)
-
+            # await message.answer(texts.sales, disable_web_page_preview=True)
+            file_id = 'BQACAgIAAxkDAAJlVGp1dzEQp7QVaxdidgOTzh0H0JA-AALkrQAC24WpS92Lc17MJ-YWPQQ'
+            await message.answer_document(document=file_id, caption=texts.sales)
+            # m = await message.answer_document(document=types.InputFile("files/Предложения_участникам_и_болельщикам.pdf"), caption=texts.sales)
+            # print(m)
+    
         elif user_input == buttons.maps:
-        # media = [
-        #     types.InputMediaPhoto(types.InputFile("files/map_minsk_1.jpg"), caption='SWIMSTAR'),
-        #     types.InputMediaPhoto(types.InputFile("files/map_minsk_2.jpg")),
-        # ]
-        # await message.answer_media_group(media)
-            await message.answer_photo(photo=types.InputFile("files/night_run.jpg"), caption=texts.maps)
-        # await message.answer_photo(photo=types.InputFile("files/map_tumen_2.jpg"), caption='IRONSTAR ОЛИМПИК')
-        # await message.answer_photo(photo=types.InputFile("files/map_tumen_3.jpg"), caption='IRONLADY')
-        # await message.answer_photo(photo=types.InputFile("files/map_tumen_4.jpg"), caption='MANSTAR')
-        # await message.answer_photo(photo=types.InputFile("files/map_tumen_5.jpg"), caption='STARKIDS')
-        # await message.answer_photo(photo=types.InputFile("files/map_tumen_6.jpg"), caption='ЭКСПО')
-        elif user_input == buttons.docs:
-            m = await message.answer_document(document=types.InputFile("files/Согласие_с_условиями_участия_в_Ночном_забеге_в_столице_закатов_2026.docx"), caption=texts.docs, reply_markup=kb.menu_kb)
-
-
-    # elif user_input == buttons.activity:
-    #     await message.answer(texts.activity_0)
-    #     await message.answer(texts.activity_1, reply_markup=kb.reg_kb_1)
-    #     await message.answer(texts.activity_2, reply_markup=kb.reg_kb_2)
-    #     await message.answer(texts.activity_3, reply_markup=kb.reg_kb_3)
-    #     await message.answer(texts.activity_4, reply_markup=kb.reg_kb_4)
-    #     await message.answer(texts.activity_5, reply_markup=kb.reg_kb_5)
-
-    # elif user_input == buttons.infocatalog:
-    #     await message.answer(texts.infocatalog, disable_web_page_preview=True)
-
-    # elif user_input == buttons.schema:
-    #     await message.answer_photo(photo=types.InputFile("files/schema_tumen.jpg"), caption=texts.schema)
+            # media = [
+            #     types.InputMediaPhoto(types.InputFile("files/map_minsk_1.jpg"), caption='SWIMSTAR'),
+            #     types.InputMediaPhoto(types.InputFile("files/map_minsk_2.jpg")),
+            # ]
+            # await message.answer_media_group(media)
+            await message.answer_photo(photo=types.InputFile("files/msk1.jpg"), caption='ЛИГА ТРИАТЛОНА & IRONSTAR МОСКВА 2026')
+            await message.answer_photo(photo=types.InputFile("files/msk2.jpg"), caption='ЛИГА ТРИАТЛОНА & IRONSTAR МОСКВА 113')
+            await message.answer_photo(photo=types.InputFile("files/msk3.jpg"), caption='STARKIDS')
+            await message.answer_photo(photo=types.InputFile("files/msk4.jpg"), caption='ДЕТСКИЙ КУБОК ФТР 4-6 ЛЕТ')
+            await message.answer_photo(photo=types.InputFile("files/msk5.jpg"), caption='ДЕТСКИЙ КУБОК ФТР 7-8 ЛЕТ')
+            await message.answer_photo(photo=types.InputFile("files/msk6.jpg"), caption='ДЕТСКИЙ КУБОК ФТР 9-10 ЛЕТ')
+            await message.answer_photo(photo=types.InputFile("files/msk7.jpg"), caption='ДЕТСКИЙ КУБОК ФТР 11-12 ЛЕТ')
+            await message.answer_photo(photo=types.InputFile("files/msk8.jpg"), caption='ДЕТСКИЙ КУБОК ФТР 13-14 ЛЕТ')
+            await message.answer_photo(photo=types.InputFile("files/msk9.jpg"), caption='СЕМЕЙНАЯ ЭСТАФЕТА')
+            await message.answer_photo(photo=types.InputFile("files/msk10.jpg"), caption='СУПЕРСПРИНТ ТРОЙКА (ОТБОРОЧНЫЙ ТУР)')
+            await message.answer_photo(photo=types.InputFile("files/msk11.jpg"), caption='СУПЕРСПРИНТ ТРОЙКА (ФИНАЛ)')
+        # elif user_input == buttons.docs:
+        #      m = await message.answer_document(document=types.InputFile("files/Согласие_с_условиями_участия_в_Ночном_забеге.docx"), caption=texts.docs, reply_markup=kb.menu_kb)
+    
+    
+        elif user_input == buttons.activity:
+            await message.answer(texts.activity_1)
+            # await message.answer(texts.activity_1, reply_markup=kb.reg_kb_1)
+            # await message.answer(texts.activity_2, reply_markup=kb.reg_kb_2)
+            # await message.answer(texts.activity_3, reply_markup=kb.reg_kb_3)
+            # await message.answer(texts.activity_4, reply_markup=kb.reg_kb_4)
+            # await message.answer(texts.activity_5, reply_markup=kb.reg_kb_5)
+    
+        elif user_input == buttons.infocatalog:
+            await message.answer(texts.infocatalog, disable_web_page_preview=True)
 
         elif user_input == buttons.my_number:
             data = await state.get_data()

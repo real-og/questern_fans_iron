@@ -2,7 +2,6 @@ from aiogram import types
 from aiogram.dispatcher import FSMContext
 
 import keyboards as kb
-import db
 import texts
 from loader import dp
 from states import State

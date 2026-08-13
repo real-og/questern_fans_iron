@@ -3,7 +3,6 @@ from aiogram.dispatcher import FSMContext
 from aiogram.types import ReplyKeyboardRemove
 
 import keyboards as kb
-import db
 import texts
 from loader import dp
 from states import State
@@ -14,7 +13,6 @@ import re
 
 import buttons
 
-import side_logic
 
 def is_email(string):
         pattern = r'^[\w\.-]+@[\w\.-]+\.\w{2,}$'

@@ -8,11 +8,12 @@ import buttons
 menu_kb = ReplyKeyboardMarkup(
     [
         [buttons.scheadule],
-        [buttons.infocatalog],
-        [buttons.maps],
-        [buttons.guide],
+        [buttons.schema],
+        # [buttons.infocatalog],
+        # [buttons.maps],
+        # [buttons.guide],
         # [buttons.docs],
-        [buttons.sales],
+        # [buttons.sales],
         [buttons.activity],
         [buttons.my_number]
     ],

@@ -84,3 +84,11 @@ class CSVDatabase:
                     return row
 
             return None
+        
+    async def get_all(self):
+        async with self.lock:
+            _, rows = self._read()
+            return rows
+        
+
+

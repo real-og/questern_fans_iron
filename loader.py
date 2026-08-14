@@ -3,6 +3,7 @@ from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.contrib.fsm_storage.redis import RedisStorage2
 import logging
 import config_io
+import table_io
 
 
 logging.basicConfig(level=logging.WARNING)
@@ -13,3 +14,4 @@ storage = RedisStorage2(db=1)
 
 bot = Bot(token=BOT_TOKEN, parse_mode="HTML", proxy=PROXY)
 dp = Dispatcher(bot, storage=storage)
+db = table_io.CSVDatabase("table.csv")

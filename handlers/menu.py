@@ -69,10 +69,10 @@ async def send_welcome(message: types.Message, state: FSMContext):
 
     elif user_input == buttons.sales:
         # await message.answer(texts.sales, disable_web_page_preview=True)
-        # file_id = 'BQACAgIAAxkDAAJlVGp1dzEQp7QVaxdidgOTzh0H0JA-AALkrQAC24WpS92Lc17MJ-YWPQQ'
-        # await message.answer_document(document=file_id, caption=texts.sales)
-        m = await message.answer_document(document=types.InputFile("files/Акции IRONSTAR НН.pdf"), caption=texts.sales)
-        print(m)
+        file_id = 'BQACAgIAAxkDAAKe-2qDEjuuW8GJfZ_Ciq_DDQKXvfIQAAIlogAC0r8YSNWxkL0zXAM5PQQ'
+        await message.answer_document(document=file_id, caption=texts.sales)
+        # m = await message.answer_document(document=types.InputFile("files/Акции IRONSTAR НН.pdf"), caption=texts.sales)
+        # print(m)
 
     elif user_input == buttons.maps:
         await message.answer_photo(photo=types.InputFile("files/map1.jpg"), caption='<b>IRONSTAR 113</b>')

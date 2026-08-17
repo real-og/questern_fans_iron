@@ -51,15 +51,15 @@ async def send_welcome(message: types.Message, state: FSMContext):
     elif user_input == buttons.guide:
         await message.answer(texts.guide_1, disable_web_page_preview=True)
         media = [
-            types.InputMediaPhoto(types.InputFile("files/guide_1.jpg")),
-            types.InputMediaPhoto(types.InputFile("files/guide_2.jpg")),
-            types.InputMediaPhoto(types.InputFile("files/guide_3.jpg")),
-            types.InputMediaPhoto(types.InputFile("files/guide_4.jpg")),
-            types.InputMediaPhoto(types.InputFile("files/guide_5.jpg")),
-            types.InputMediaPhoto(types.InputFile("files/guide_6.jpg")),
-            types.InputMediaPhoto(types.InputFile("files/guide_7.jpg")),
-            types.InputMediaPhoto(types.InputFile("files/guide_8.jpg")),
-            types.InputMediaPhoto(types.InputFile("files/guide_9.jpg")),
+            types.InputMediaPhoto(types.InputFile("files/guide1.jpg")),
+            types.InputMediaPhoto(types.InputFile("files/guide2.jpg")),
+            types.InputMediaPhoto(types.InputFile("files/guide3.jpg")),
+            types.InputMediaPhoto(types.InputFile("files/guide4.jpg")),
+            types.InputMediaPhoto(types.InputFile("files/guide5.jpg")),
+            types.InputMediaPhoto(types.InputFile("files/guide6.jpg")),
+            types.InputMediaPhoto(types.InputFile("files/guide7.jpg")),
+            types.InputMediaPhoto(types.InputFile("files/guide8.jpg")),
+            types.InputMediaPhoto(types.InputFile("files/guide9.jpg")),
         ]
         await message.answer_media_group(media)
         await message.answer(texts.guide_2, disable_web_page_preview=True)

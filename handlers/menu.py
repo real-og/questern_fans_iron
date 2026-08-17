@@ -44,7 +44,7 @@ async def send_welcome(message: types.Message, state: FSMContext):
         await message.answer(texts.scheadule_2, disable_web_page_preview=True)
 
     elif user_input == buttons.infocatalog:
-        await message.answer_photo(photo=types.InputFile("files/info.jpg"), caption=texts.infocatalog, reply_markup=kb.menu_kb, disable_web_page_preview=True)
+        await message.answer_photo(photo=types.InputFile("files/info.jpg"), caption=texts.infocatalog, reply_markup=kb.menu_kb)
 
 
 

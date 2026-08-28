@@ -80,8 +80,8 @@ async def send_welcome(message: types.Message, state: FSMContext):
         await message.answer_photo(photo=types.InputFile("files/map1.png"), caption='IRONSTAR 1/4')
         await message.answer_photo(photo=types.InputFile("files/map2.png"), caption='IRONSTAR 1/8')
         media = [
-            types.InputMediaPhoto(types.InputFile("files/map1.jpg"), caption='СУПЕРМИКС'),
-            types.InputMediaPhoto(types.InputFile("files/map4.jpg"))
+            types.InputMediaPhoto(types.InputFile("files/map1.png"), caption='СУПЕРМИКС'),
+            types.InputMediaPhoto(types.InputFile("files/map4.png"))
         ]
         await message.answer_media_group(media)
         # await message.answer_photo(photo=types.InputFile("files/map1.png"))

@@ -11,10 +11,11 @@ menu_kb = ReplyKeyboardMarkup(
         [buttons.schema],
         [buttons.infocatalog],
         [buttons.maps],
+        [buttons.transfer],
         [buttons.guide],
         # [buttons.docs],
         [buttons.sales],
-        [buttons.activity],
+        # [buttons.activity],
         [buttons.my_number]
     ],
     resize_keyboard=True,

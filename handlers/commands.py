@@ -32,6 +32,7 @@ async def send_welcome(message: types.Message, state: FSMContext):
     await State.confirmation.set()
     start_date = str(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     await state.update_data(start_date=start_date)
+    await state.update_data(zavidovo_date=start_date)
 
     user = await db.get(message.from_user.id)
     
@@ -39,7 +40,7 @@ async def send_welcome(message: types.Message, state: FSMContext):
         all_users = await db.get_all()
         fan_id = fan_id_interface.get_fan_id(all_users)
         await db.add({"telegram_id": message.from_user.id, "start_date": start_date, "fan_id": fan_id})
-    event_id = await check_event_id(message.from_user.id,"NN_event_id")
+    event_id = await check_event_id(message.from_user.id,"Zavidovo_event_id")
 
 
 @dp.callback_query_handler(state=State.confirmation)

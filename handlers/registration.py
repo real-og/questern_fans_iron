@@ -131,10 +131,10 @@ async def send_welcome(message: types.Message, state: FSMContext):
             return
         
         if user_input == buttons.scheadule:
-            # file_id = 'BQACAgIAAxkDAAKgEGqDHIiydxUDWV67vrUNHQrzUdBwAAKHogAC0r8YSPTxjjiLr-mTPQQ'
-            # await message.answer_document(document=file_id, caption=texts.sales)
-            m = await message.answer_document(document=types.InputFile("files/Расписание.pdf"), caption=texts.scheadule_1)
-            print(m)
+            file_id = 'BQACAgIAAxkDAALHoGqRRkIey4eDUsnMeuP2e9fFobk9AALeoAACoLmJSIFeFhrk6WXjPQQ'
+            await message.answer_document(document=file_id, caption=texts.scheadule_1)
+            # m = await message.answer_document(document=types.InputFile("files/Расписание.pdf"), caption=texts.scheadule_1)
+            # print(m)
 
         elif user_input == buttons.infocatalog:
             await message.answer_photo(photo=types.InputFile("files/info.jpg"), caption=texts.infocatalog, reply_markup=kb.menu_kb)
@@ -168,15 +168,15 @@ async def send_welcome(message: types.Message, state: FSMContext):
             print(m)
 
         elif user_input == buttons.maps:
-            await message.answer_photo(photo=types.InputFile("files/map1.jpg"), caption='IRONSTAR 1/4')
-            await message.answer_photo(photo=types.InputFile("files/map2.jpg"), caption='IRONSTAR 1/8')
-            await message.answer_photo(photo=types.InputFile("files/map4.jpg"), caption='СУПЕРМИКС')
-            await message.answer_photo(photo=types.InputFile("files/map5.jpg"), caption='СВИМРАН')
-            await message.answer_photo(photo=types.InputFile("files/map6.jpg"), caption='SWIMSTAR 1 МИЛЯ / 2 МИЛИ')
-            await message.answer_photo(photo=types.InputFile("files/map7.jpg"), caption='SWIMSTAR 1K / 2K ЭСТАФЕТА')
-            await message.answer_photo(photo=types.InputFile("files/map8.jpg"), caption='IRONLADY')
-            await message.answer_photo(photo=types.InputFile("files/map9.jpg"), caption='MANSTAR')
-            await message.answer_photo(photo=types.InputFile("files/map10.jpg"), caption='STARKIDS')
+            await message.answer_photo(photo=types.InputFile("files/map1.png"), caption='IRONSTAR 1/4')
+            await message.answer_photo(photo=types.InputFile("files/map2.png"), caption='IRONSTAR 1/8')
+            await message.answer_photo(photo=types.InputFile("files/map4.png"), caption='СУПЕРМИКС')
+            await message.answer_photo(photo=types.InputFile("files/map5.png"), caption='СВИМРАН')
+            await message.answer_photo(photo=types.InputFile("files/map6.png"), caption='SWIMSTAR 1 МИЛЯ / 2 МИЛИ')
+            await message.answer_photo(photo=types.InputFile("files/map7.png"), caption='SWIMSTAR 1K / 2K ЭСТАФЕТА')
+            await message.answer_photo(photo=types.InputFile("files/map8.png"), caption='IRONLADY')
+            await message.answer_photo(photo=types.InputFile("files/map9.png"), caption='MANSTAR')
+            await message.answer_photo(photo=types.InputFile("files/map10.png"), caption='STARKIDS')
 
         # elif user_input == buttons.docs:
         #      m = await message.answer_document(document=types.InputFile("files/Согласие_с_условиями_участия_в_Ночном_забеге.docx"), caption=texts.docs, reply_markup=kb.menu_kb)
@@ -202,6 +202,9 @@ async def send_welcome(message: types.Message, state: FSMContext):
             ]
             await message.answer_media_group(media)
             await message.answer_photo(photo=types.InputFile("files/schema3.jpg"), caption=texts.schema_2)
+
+        elif user_input == buttons.transfer:
+            await message.answer_photo(photo=types.InputFile("files/transfer.jpg"), caption=texts.transfer)
             
 
         elif user_input == buttons.my_number:

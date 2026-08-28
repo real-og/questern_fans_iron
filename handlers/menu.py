@@ -79,6 +79,7 @@ async def send_welcome(message: types.Message, state: FSMContext):
     elif user_input == buttons.maps:
         await message.answer_photo(photo=types.InputFile("files/map1.png"), caption='IRONSTAR 1/4')
         await message.answer_photo(photo=types.InputFile("files/map2.png"), caption='IRONSTAR 1/8')
+        await message.answer_photo(photo=types.InputFile("files/map3.png"))
         await message.answer_photo(photo=types.InputFile("files/map4.png"), caption='СУПЕРМИКС')
         await message.answer_photo(photo=types.InputFile("files/map5.png"), caption='СВИМРАН')
         await message.answer_photo(photo=types.InputFile("files/map6.png"), caption='SWIMSTAR 1 МИЛЯ / 2 МИЛИ')

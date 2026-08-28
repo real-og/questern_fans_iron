@@ -162,10 +162,10 @@ async def send_welcome(message: types.Message, state: FSMContext):
 
         elif user_input == buttons.sales:
             # await message.answer(texts.sales, disable_web_page_preview=True)
-            # file_id = 'BQACAgIAAxkDAAKgEGqDHIiydxUDWV67vrUNHQrzUdBwAAKHogAC0r8YSPTxjjiLr-mTPQQ'
-            # await message.answer_document(document=file_id, caption=texts.sales)
-            m = await message.answer_document(document=types.InputFile("files/скидки и предложения Завидово 2026.pdf"), caption=texts.sales)
-            print(m)
+            file_id = 'BQACAgIAAxkDAALHzmqRSG8ab2a-rPG9GZu0GpjUQwtgAAJToQACoLmJSFH_VRgxQxEKPQQ'
+            await message.answer_document(document=file_id, caption=texts.sales)
+            # m = await message.answer_document(document=types.InputFile("files/скидки и предложения Завидово 2026.pdf"), caption=texts.sales)
+            # print(m)
 
         elif user_input == buttons.maps:
             await message.answer_photo(photo=types.InputFile("files/map1.png"), caption='IRONSTAR 1/4')

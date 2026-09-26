@@ -11,7 +11,7 @@ import buttons
 import fan_id_interface
 from datetime import datetime
 from checker import check_event_id
-from content import get_sirius_activities_from_redis
+from handlers.content import get_sirius_activities_from_redis
 
 
 ACTIVITY_LIMITS = {

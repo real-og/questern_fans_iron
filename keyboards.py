@@ -40,6 +40,22 @@ reg_kb_4.add(b_4)
 reg_kb_5 = InlineKeyboardMarkup()
 reg_kb_5.add(b_5)
 
+b_1 = InlineKeyboardButton('ОТМЕНИТЬ РЕГИСТРАЦИЮ', callback_data='11')
+b_2 = InlineKeyboardButton('ОТМЕНИТЬ РЕГИСТРАЦИЮ', callback_data='22')
+b_3 = InlineKeyboardButton('ОТМЕНИТЬ РЕГИСТРАЦИЮ', callback_data='33')
+b_4 = InlineKeyboardButton('ОТМЕНИТЬ РЕГИСТРАЦИЮ', callback_data='44')
+b_5 = InlineKeyboardButton('ОТМЕНИТЬ РЕГИСТРАЦИЮ', callback_data='55')
+reg_cancel_kb_1 = InlineKeyboardMarkup()
+reg_cancel_kb_1.add(b_1)
+reg_cancel_kb_2 = InlineKeyboardMarkup()
+reg_cancel_kb_2.add(b_2)
+reg_cancel_kb_3 = InlineKeyboardMarkup()
+reg_cancel_kb_3.add(b_3)
+reg_cancel_kb_4 = InlineKeyboardMarkup()
+reg_cancel_kb_4.add(b_4)
+reg_cancel_kb_5 = InlineKeyboardMarkup()
+reg_cancel_kb_5.add(b_5)
+
 
 
 def get_contact_kb():

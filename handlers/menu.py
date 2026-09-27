@@ -105,11 +105,36 @@ async def send_welcome(message: types.Message, state: FSMContext):
         # await message.answer_photo(photo=types.InputFile("files/activity1.jpg"), caption=texts.activity_1, reply_markup=kb.reg_kb_1)
         # await message.answer_photo(photo=types.InputFile("files/activity2.jpg"), caption=texts.activity_2, reply_markup=kb.reg_kb_2)
         # await message.answer(texts.activity_1)
-        await message.answer(texts.activity_1, reply_markup=kb.reg_kb_1, disable_web_page_preview=True)
-        await message.answer(texts.activity_2, reply_markup=kb.reg_kb_2, disable_web_page_preview=True)
-        await message.answer(texts.activity_3, reply_markup=kb.reg_kb_3, disable_web_page_preview=True)
-        await message.answer(texts.activity_4, reply_markup=kb.reg_kb_4, disable_web_page_preview=True)
-        await message.answer(texts.activity_5, reply_markup=kb.reg_kb_5, disable_web_page_preview=True)
+        registered = data.get('registered_activities_sirius', [])
+        if 'КОФЕРАЙД С ИЛЬЕЙ И ЮЛИЕЙ ПРАСОЛОВЫМИ' in registered:
+            kb_1 = kb.reg_cancel_kb_1
+        else:
+            kb_1 = kb.reg_kb_1
+
+        if 'ФОТО-ПРОБЕЖКА ПО ОЛИМПИЙСКИМ ОБЪЕКТАМ' in registered:
+            kb_2 = kb.reg_cancel_kb_2
+        else:
+            kb_2 = kb.reg_kb_2
+
+        if 'ПРОБЕЖКА И ЗАВТРАК С ИЛЬЕЙ СЛЕПОВЫМ' in registered:
+            kb_3 = kb.reg_cancel_kb_3
+        else:
+            kb_3 = kb.reg_kb_3
+
+        if 'ТРЕНИРОВКА ПО ПЛАВАНИЮ С АНДРЕЕМ И АЛЕКСАНДРОМ БРЮХАНКОВЫМИ' in registered:
+            kb_4 = kb.reg_cancel_kb_4
+        else:
+            kb_4 = kb.reg_kb_4
+
+        if 'МАСТЕР-КЛАСС ПО ПРОХОЖДЕНИЮ ТРАНЗИТНОЙ ЗОНЫ' in registered:
+            kb_5 = kb.reg_cancel_kb_5
+        else:
+            kb_5 = kb.reg_kb_5
+        await message.answer(texts.activity_1, reply_markup=kb_1, disable_web_page_preview=True)
+        await message.answer(texts.activity_2, reply_markup=kb_2, disable_web_page_preview=True)
+        await message.answer(texts.activity_3, reply_markup=kb_3, disable_web_page_preview=True)
+        await message.answer(texts.activity_4, reply_markup=kb_4, disable_web_page_preview=True)
+        await message.answer(texts.activity_5, reply_markup=kb_5, disable_web_page_preview=True)
 
     # elif user_input == buttons.infocatalog:
     #     await message.answer(texts.infocatalog, disable_web_page_preview=True)

@@ -22,9 +22,74 @@ ACTIVITY_LIMITS = {
     '5': None,
 }
 
+ACTIVITY_NAMES = {
+    '1': 'КОФЕРАЙД С ИЛЬЕЙ И ЮЛИЕЙ ПРАСОЛОВЫМИ',
+    '2': 'ФОТО-ПРОБЕЖКА ПО ОЛИМПИЙСКИМ ОБЪЕКТАМ',
+    '3': 'ПРОБЕЖКА И ЗАВТРАК С ИЛЬЕЙ СЛЕПОВЫМ',
+    '4': 'ТРЕНИРОВКА ПО ПЛАВАНИЮ С АНДРЕЕМ И АЛЕКСАНДРОМ БРЮХАНКОВЫМИ',
+    '5': 'МАСТЕР-КЛАСС ПО ПРОХОЖДЕНИЮ ТРАНЗИТНОЙ ЗОНЫ',
+}
+
+REGISTER_KEYBOARDS = {
+    '1': kb.reg_kb_1,
+    '2': kb.reg_kb_2,
+    '3': kb.reg_kb_3,
+    '4': kb.reg_kb_4,
+    '5': kb.reg_kb_5,
+}
+
+CANCEL_KEYBOARDS = {
+    '1': kb.reg_cancel_kb_1,
+    '2': kb.reg_cancel_kb_2,
+    '3': kb.reg_cancel_kb_3,
+    '4': kb.reg_cancel_kb_4,
+    '5': kb.reg_cancel_kb_5,
+}
+
 @dp.callback_query_handler(state=State.menu)
 async def inline_button_handler(callback: types.CallbackQuery, state: FSMContext):
     event_id = await check_event_id(callback.from_user.id,"Sirius_event_id")
+
+
+        # Отмена регистрации
+    if callback.data in ('11', '22', '33', '44', '55'):
+        activity_id = callback.data[0]
+
+        activity_name = ACTIVITY_NAMES[activity_id]
+
+        data = await state.get_data()
+
+        registered_activities = data.get(
+            'registered_activities_sirius',
+            []
+        )
+
+        if activity_name in registered_activities:
+            registered_activities.remove(activity_name)
+
+            await state.update_data(
+                registered_activities_sirius=registered_activities
+            )
+
+            await callback.message.answer(
+                f"""Регистрация отменена ❌
+
+Активность: {activity_name}""",
+                reply_markup=kb.menu_kb
+            )
+
+        else:
+            await callback.message.answer(
+                "Вы не зарегистрированы на эту активность",
+                reply_markup=kb.menu_kb
+            )
+
+        await callback.message.edit_reply_markup(
+            reply_markup=REGISTER_KEYBOARDS[activity_id]
+        )
+
+        await callback.answer()
+        return
 
     if callback.data == '1':
         activity_name = 'КОФЕРАЙД С ИЛЬЕЙ И ЮЛИЕЙ ПРАСОЛОВЫМИ'
@@ -62,7 +127,7 @@ async def inline_button_handler(callback: types.CallbackQuery, state: FSMContext
             if activity_name in activities
         )
 
-        if registered_count > limit:
+        if registered_count >= limit:
             await callback.message.answer(
                 "К сожалению, места на эту активность закончились 😔",
                 reply_markup=kb.menu_kb
@@ -75,6 +140,9 @@ async def inline_button_handler(callback: types.CallbackQuery, state: FSMContext
 
 Активность: {activity_name}"""
         await callback.message.answer(text, reply_markup=kb.menu_kb)
+        await callback.message.edit_reply_markup(
+    reply_markup=CANCEL_KEYBOARDS[callback.data]
+)
         registered_activities.append(activity_name)
         await state.update_data(registered_activities_sirius=registered_activities)
 

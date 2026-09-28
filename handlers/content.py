@@ -85,6 +85,43 @@ def get_sirius_activities_from_redis():
     return result
 
 
+def get_sirius_lectorys_from_redis():
+    """
+    Возвращает:
+    {
+        telegram_id: ["Лекторий 1", "Лекторий 2"],
+        ...
+    }
+    """
+
+    result = {}
+
+    pattern = f"{FSM_PREFIX}:*:*:data"
+
+    for key in redis_client.scan_iter(pattern):
+        # fsm:<chat_id>:<user_id>:data
+        parts = key.split(":")
+
+        if len(parts) < 4:
+            continue
+
+        user_id = str(parts[-2])
+
+        try:
+            data = json.loads(redis_client.get(key) or "{}")
+        except (json.JSONDecodeError, TypeError):
+            continue
+
+        lectorys = normalize_activities(
+            data.get("registered_lectorys_sirius")
+        )
+
+        if lectorys:
+            result[user_id] = lectorys
+
+    return result
+
+
 def generate_activity_status_csv(
     all_users,
     registered_users,
@@ -154,6 +191,75 @@ def generate_activity_status_csv(
     return len(rows)
 
 
+def generate_lectory_status_csv(
+    all_users,
+    registered_users,
+    filename
+):
+    # telegram_id -> строка из table.csv
+    users_by_id = {
+        str(user.get("telegram_id")): user
+        for user in all_users
+    }
+
+    rows = []
+
+    for telegram_id, lectorys in registered_users.items():
+
+        user = users_by_id.get(str(telegram_id))
+
+        # В Redis пользователь есть, а в table.csv нет
+        if not user:
+            continue
+
+        for lectory in lectorys:
+            rows.append({
+                "Лекторий": lectory,
+                "Имя": user.get("name", ""),
+                "Telegram ID": telegram_id,
+                "Дата рождения": user.get("birth", ""),
+                "Город": user.get("city", ""),
+                "Email": user.get("email", ""),
+                "Телефон": user.get("number", ""),
+            })
+
+    rows.sort(
+        key=lambda row: (
+            str(row["Лекторий"]).lower(),
+            str(row["Имя"]).lower(),
+            str(row["Telegram ID"]),
+        )
+    )
+
+    fieldnames = [
+        "Лекторий",
+        "Имя",
+        "Telegram ID",
+        "Дата рождения",
+        "Город",
+        "Email",
+        "Телефон",
+    ]
+
+    with open(
+        filename,
+        "w",
+        encoding="utf-8-sig",
+        newline=""
+    ) as f:
+
+        writer = csv.DictWriter(
+            f,
+            fieldnames=fieldnames,
+            delimiter=";",
+        )
+
+        writer.writeheader()
+        writer.writerows(rows)
+
+    return len(rows)
+
+
 @dp.message_handler(
     commands=["activity_status"],
     state="*"
@@ -163,20 +269,30 @@ async def activity_status_handler(
     state: FSMContext
 ):
     await message.answer(
-        "Формирую CSV по регистрациям на активности..."
+        "Формирую CSV по регистрациям на активности и лекторий..."
     )
+
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
     filename = (
         f"activity_status_"
-        f"{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
+        f"{timestamp}.csv"
+    )
+
+    lectory_filename = (
+        f"lectory_status_"
+        f"{timestamp}.csv"
     )
 
     try:
         # Основная база пользователей
         all_users = await db.get_all()
 
-        # Из Redis берём ТОЛЬКО регистрации на активности
+        # Из Redis берём регистрации на активности
         registered_users = get_sirius_activities_from_redis()
+
+        # Из Redis берём регистрации на лекторий
+        registered_lectorys = get_sirius_lectorys_from_redis()
 
         rows_count = generate_activity_status_csv(
             all_users=all_users,
@@ -184,15 +300,20 @@ async def activity_status_handler(
             filename=filename,
         )
 
-        if rows_count == 0:
-            await message.answer(
-                "Регистраций на активности пока не найдено."
-            )
-            return
+        lectory_rows_count = generate_lectory_status_csv(
+            all_users=all_users,
+            registered_users=registered_lectorys,
+            filename=lectory_filename,
+        )
 
         await message.answer_document(
             document=types.InputFile(filename),
-            caption=f"Готово. Регистраций найдено: {rows_count}",
+            caption=f"Активности. Регистраций найдено: {rows_count}",
+        )
+
+        await message.answer_document(
+            document=types.InputFile(lectory_filename),
+            caption=f"Лекторий. Регистраций найдено: {lectory_rows_count}",
         )
 
     except Exception as e:
@@ -203,3 +324,6 @@ async def activity_status_handler(
     finally:
         if os.path.exists(filename):
             os.remove(filename)
+
+        if os.path.exists(lectory_filename):
+            os.remove(lectory_filename)

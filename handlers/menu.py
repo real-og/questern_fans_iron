@@ -136,6 +136,15 @@ async def send_welcome(message: types.Message, state: FSMContext):
         await message.answer(texts.activity_4, reply_markup=kb_4, disable_web_page_preview=True)
         await message.answer(texts.activity_5, reply_markup=kb_5, disable_web_page_preview=True)
 
+    elif user_input == buttons.lectory:
+        await message.answer(texts.lectory_0, disable_web_page_preview=True)
+        await message.answer(texts.lectory_1, reply_markup=kb.kb_lectory_1, disable_web_page_preview=True)
+        await message.answer(texts.lectory_2, reply_markup=kb.kb_lectory_2, disable_web_page_preview=True)
+        await message.answer(texts.lectory_3, reply_markup=kb.kb_lectory_3, disable_web_page_preview=True)
+        await message.answer(texts.lectory_4, reply_markup=kb.kb_lectory_4, disable_web_page_preview=True)
+        await message.answer(texts.lectory_5, reply_markup=kb.kb_lectory_5, disable_web_page_preview=True)
+
+
     # elif user_input == buttons.infocatalog:
     #     await message.answer(texts.infocatalog, disable_web_page_preview=True)
 
@@ -158,7 +167,8 @@ async def send_welcome(message: types.Message, state: FSMContext):
         fan_id = user.get('fan_id')
         event_id = user.get('Sirius_event_id')
         registered_activities = data.get('registered_activities_sirius', [])
-        await message.answer(texts.get_my_numbers(fan_id, event_id, registered_activities))
+        registered_lectorys = data.get('registered_lectorys_sirius', [])
+        await message.answer(texts.get_my_numbers(fan_id, event_id, registered_activities, registered_lectorys))
 
     
     await message.answer(texts.menu, reply_markup=kb.menu_kb)

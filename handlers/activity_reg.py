@@ -51,6 +51,89 @@ async def inline_button_handler(callback: types.CallbackQuery, state: FSMContext
     event_id = await check_event_id(callback.from_user.id,"Sirius_event_id")
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    if callback.data == '111':
+        lectory_name = 'Лекторий 10:30 - 11:30'
+        await state.update_data(lectory_1=str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+    elif callback.data == '222':
+        lectory_name = 'Лекторий Точка банк 11:30 - 12:30'
+        await state.update_data(lectory_2=str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+    elif callback.data == '333':
+        lectory_name = 'Лекторий 12:30 - 13:30'
+        await state.update_data(lectory_3=str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+    elif callback.data == '444':
+        lectory_name = 'Панельная дискуссия 13:30 – 14:30'
+        await state.update_data(lectory_4=str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+    elif callback.data == '555':
+        lectory_name = 'Круглый стол 14:30 – 15:30'
+        await state.update_data(lectory_5=str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+
+    data = await state.get_data()
+    user = await db.get(callback.from_user.id)
+    registered_lectorys = data.get('registered_lectorys_sirius', [])
+
+    if lectory_name in registered_lectorys:
+        await callback.message.answer("Вы уже зарегистрированы на этот лекторий", reply_markup=kb.menu_kb)
+        return
+
+
+    if user.get('birth') and user.get('city'):
+        text = f"""Вы успешно зарегистрированы✅
+
+Лекторий: {lectory_name}"""
+        await callback.message.answer(text, reply_markup=kb.menu_kb)
+        registered_lectorys.append(lectory_name)
+        await state.update_data(registered_lectorys_sirius=registered_lectorys)
+
+    else:
+        await callback.message.answer("Для регистрации на лекторий нужно дополнить ваши данные. Это займет не больше минуты 👇")
+        await callback.message.answer( "Напишите дату рождения в формате ДД.ММ.ГГГГ")
+        await State.entering_birth.set()
+
+    if callback.data in ['111', '222', '333', '444', '555']:
+        return
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         # Отмена регистрации
     if callback.data in ('11', '22', '33', '44', '55'):
         activity_id = callback.data[0]

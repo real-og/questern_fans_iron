@@ -16,11 +16,29 @@ menu_kb = ReplyKeyboardMarkup(
         # [buttons.docs],
         [buttons.sales],
         [buttons.activity],
-        [buttons.my_number]
+        [buttons.lectory],
+        [buttons.my_number],
     ],
     resize_keyboard=True,
     one_time_keyboard=True
 )
+
+b_1 = InlineKeyboardButton('РЕГИСТРАЦИЯ', callback_data='111')
+b_2 = InlineKeyboardButton('РЕГИСТРАЦИЯ', callback_data='222')
+b_3 = InlineKeyboardButton('РЕГИСТРАЦИЯ', callback_data='333')
+b_4 = InlineKeyboardButton('РЕГИСТРАЦИЯ', callback_data='444')
+b_5 = InlineKeyboardButton('РЕГИСТРАЦИЯ', callback_data='555')
+kb_lectory_1 = InlineKeyboardMarkup()
+kb_lectory_1.add(b_1)
+kb_lectory_2 = InlineKeyboardMarkup()
+kb_lectory_2.add(b_2)
+kb_lectory_3 = InlineKeyboardMarkup()
+kb_lectory_3.add(b_3)
+kb_lectory_4 = InlineKeyboardMarkup()
+kb_lectory_4.add(b_4)
+kb_lectory_5 = InlineKeyboardMarkup()
+kb_lectory_5.add(b_5)
+
 
 
 

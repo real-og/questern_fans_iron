@@ -70,8 +70,8 @@ async def send_welcome(message: types.Message, state: FSMContext):
 
 
     elif user_input == buttons.sales:
-        # await message.answer(texts.sales, disable_web_page_preview=True)
-        file_id = 'BQACAgIAAxkDAALQi2q3OdzSmHrl90a_t1GDRKWMTq4TAALZsAACi7q5SXpVltW6sC51PQQ'
+
+        file_id = 'BQACAgIAAxkDAAL2k2q91RnS0a-5ya0vv9VMX1UbR1IXAAL2pAAC1E7wSQPwlNz9UwdbPQQ'
         await message.answer_document(document=file_id, caption=texts.sales)
         # m = await message.answer_document(document=types.InputFile("files/Скидки_Сириус_2026.pdf"), caption=texts.sales)
         # print(m)
